@@ -1,0 +1,74 @@
+% Contributors:
+% Jan Stoess <stoess@ira.uka.de>
+%
+\documentclass[12pt, a4paper]{book}
+\usepackage[dvipdfm,
+   pdfauthor={Jan Stoess},
+   pdftitle={System Support for Distributed Energy Management in Modular Operating Systems},
+   pdfsubject={PhD Thesis},
+   pdfkeywords={Operating Systems, Microkernels, Energy Management, Component-Based Systems}
+]{hyperref}
+\usepackage{graphicx}
+\usepackage{chngpage}
+\usepackage{xspace,ifthen,epsfig}
+\usepackage{cite}
+\usepackage{color}
+\usepackage{fancybox}
+%\usepackage{pdfpages}
+\usepackage{setspace}
+\usepackage{subfigure}
+\usepackage{longtable} 
+\usepackage{tabularx} 
+\usepackage{ltxtable} 
+\usepackage{times}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage[american,ngerman]{babel}
+\usepackage[ansinew]{inputenc}
+\usepackage{fancyhdr}
+
+%\raggedbottom
+\newcommand{\todo}[1]{{\texttt{[#1]}}}
+\newcommand{\code}[1]{{\tt \small{#1}}}
+\newcommand{\evenindent}[2]{\ifodd #1 \else \hspace*{#2} \fi}
+
+\begin{document}
+\frontmatter
+\unitlength1cm
+
+\selectlanguage{american}
+
+
+\include{diploma_thesis_title}
+
+\chapter{Abstract}
+
+\chapter{Acknowledgments}
+
+\mainmatter
+\tableofcontents 
+
+\chapter{Introduction}
+\label{sec:intro}
+\cite{mach87ulvm}
+\chapter{Related Work}
+\label{sec:bgrelwork}
+\chapter{Design} 
+\label{sec:design}
+
+\chapter{Implementation}
+\label{sec:implementation}
+
+\chapter{Evaluation}
+\label{sec:evaluation}
+
+\chapter{Conclusion}
+\label{sec:conclusion}
+
+\backmatter    
+%\chapter{Bibliography}
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliographystyle{plain}
+\bibliography{diploma_thesis}
+\end{document}
