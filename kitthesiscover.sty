@@ -1,0 +1,83 @@
+\ProvidesPackage{kitthesiscover}[2009/11/11 thesis cover for KIT]
+\RequirePackage[T1]{fontenc}
+\renewcommand*{\sfdefault}{phv}
+
+\def\ktc@kitdesc{KIT -- Universit{\"a}t des Landes Baden-W{\"u}rttemberg und nationales Forschungszentrum in der Helmholtz-Gemeinschaft}
+\def\ktc@coverfont{\fontsize{14}{14}\selectfont}
+\def\ktc@titlefont{\fontsize{28}{28}\selectfont}
+\def\ktc@authorfont{\fontsize{22}{22}\selectfont}
+\def\ktc@descfont{\fontsize{6}{6}\selectfont}
+\def\ktc@urlfont{\fontsize{15}{15}\selectfont}
+
+\def\ktc@thesistype{%
+  \@latex@warning{No thesis type given! Use \protect\thesistype before %
+    \protect\maketitle.}Geschreibsel}
+\def\ktc@type@sa{Studienarbeit}
+\def\ktc@type@da{Diplomarbeit}
+\def\ktc@type@ba{Bachelorarbeit}
+\def\ktc@type@ma{Masterarbeit}
+\newcommand{\thesistype}[1]{\expandafter\ifx\csname ktc@type@#1\endcsname\relax%
+\else\expandafter\let\expandafter\ktc@thesistype\csname ktc@type@#1\endcsname\fi}
+
+\def\ktc@prim@reviewer{Prof.\ Dr.\ Frank Bellosa}
+\newcommand{\primaryreviewer}[1]{\def\ktc@prim@reviewer{#1}}
+
+\def\ktc@sec@reviewer{Prof.\ Dr.\ Hartmut Prautzsch}
+\newcommand{\secondaryreviewer}[1]{\def\ktc@sec@reviewer{#1}}
+
+\def\ktc@advisor{No advisor???}
+\newcommand{\advisor}[1]{\def\ktc@advisor{#1}}
+
+\def\ktc@workbegin{42.\ Oktober 1582}
+\newcommand{\thesisbegindate}[1]{\def\ktc@workbegin{#1}}
+
+\def\ktc@workend{23.\ Januar 9999}
+\newcommand{\thesisenddate}[1]{\def\ktc@workend{#1}}
+
+\def\ktc@maketitle{{%
+\sf%
+\hoffset=3cm\advance\hoffset by -1in%
+\voffset=2cm\advance\voffset by -1in%
+\hsize=16cm % 21 cm - \hoffset - 2cm%
+\vsize=24.7cm % 29 cm - \voffset - 3cm%
+\ifx\pdfoutput\undefined\def\pdfrefximage##1{use pdf\LaTeX!}%
+\else\ifnum\pdfoutput=0\def\pdfrefximage##1{use pdf\LaTeX!}%
+\else\pdfximage width 4.05cm {fig/kit_logo_de_1c.pdf}\fi\fi%
+\shipout\vbox{%
+\ifx\pdfoutput\undefined\else%
+\ifnum\pdfoutput=0\else%
+\pdfliteral direct {q
+/DeviceGray CS
+0.5 SC
+0.5 w
+56.6929133 813.5433071 m
+552.7559056 813.5433071 l
+560.5511811 813.5433071 566.9291339 807.1653543 566.9291339 799.3700788 c
+566.9291339 56.6929133 l
+70.8661416 56.6929133 l
+63.0708661 56.6929133 56.6929133 63.0708661 56.6929133 70.8661416 c h S
+Q}\fi\fi%
+\vbox to \vsize{\ktc@coverfont
+\hbox to 0pt{\vbox to 0pt{\pdfrefximage\pdflastximage\vss}\hss}
+\vskip 4cm
+{\noindent\centering\ktc@titlefont\@title\par}
+\vfill
+\centerline{\ktc@thesistype}
+\centerline{von}
+\vskip\baselineskip
+\centerline{\ktc@authorfont\@author}
+\vskip\baselineskip
+\centerline{an der Fakult{\"a}t f{\"u}r Chemie und Biowissenschaften}
+\vfill
+\hbox to \hsize{\hbox to .5\hsize{\hskip 40ptErstgutachter:\hss}\ktc@prim@reviewer\hfill}\vskip .5\baselineskip
+\hbox to \hsize{\hbox to .5\hsize{\hskip 40ptZweitgutachter:\hss}\ktc@sec@reviewer\hfill}\vskip .5\baselineskip
+\hbox to \hsize{\hbox to .5\hsize{\hskip 40ptBetreuender Mitarbeiter:\hss}\ktc@advisor\hfill}\vskip .5\baselineskip
+\vfill
+\centerline{Bearbeitungszeit: \ktc@workbegin\ -- \ktc@workend}
+}
+\vskip-\baselineskip\ktc@urlfont\vskip\baselineskip% correct baselineskip
+\vskip 1cm\hbox to \hsize{\ktc@descfont\ktc@kitdesc%
+\hskip 1cm\fontseries{b}\ktc@urlfont www.kit.edu\hfill}\stepcounter{page}}
+\shipout\vbox{\vss}\stepcounter{page}
+}}
+\renewcommand{\maketitle}{\ktc@maketitle}

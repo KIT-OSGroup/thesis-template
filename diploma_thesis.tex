@@ -1,13 +1,10 @@
 % Contributors:
+
 % Jan Stoess <stoess@ira.uka.de>
+% Simon Kellner <kellner@kit.edu>
+% Konrad Miller <miller@kit.edu>
 %
 \documentclass[12pt, a4paper]{book}
-\usepackage[dvipdfm,
-   pdfauthor={Jan Stoess},
-   pdftitle={System Support for Distributed Energy Management in Modular Operating Systems},
-   pdfsubject={PhD Thesis},
-   pdfkeywords={Operating Systems, Microkernels, Energy Management, Component-Based Systems}
-]{hyperref}
 \usepackage{graphicx}
 \usepackage{chngpage}
 \usepackage{xspace,ifthen,epsfig}
@@ -27,6 +24,15 @@
 \usepackage[american,ngerman]{babel}
 \usepackage[ansinew]{inputenc}
 \usepackage{fancyhdr}
+\usepackage{kitthesiscover}
+\usepackage[%dvipdfm,
+   pdfauthor={Jan Stoess},
+   pdftitle={System Support for Distributed Energy Management in Modular Operating Systems},
+   pdfsubject={PhD Thesis},
+   pdfkeywords={Operating Systems, Microkernels, Energy Management, Component-Based Systems}
+]{hyperref}
+
+\bibliographystyle{plain}
 
 %\raggedbottom
 \newcommand{\todo}[1]{{\texttt{[#1]}}}
@@ -40,7 +46,8 @@
 \selectlanguage{american}
 
 
-\include{diploma_thesis_title}
+\input{diploma_thesis_title}
+
 
 \chapter{Abstract}
 
@@ -52,8 +59,10 @@
 \chapter{Introduction}
 \label{sec:intro}
 \cite{mach87ulvm}
+
 \chapter{Related Work}
 \label{sec:bgrelwork}
+
 \chapter{Design} 
 \label{sec:design}
 
@@ -69,6 +78,5 @@
 \backmatter    
 %\chapter{Bibliography}
 \addcontentsline{toc}{chapter}{Bibliography}
-\bibliographystyle{plain}
 \bibliography{diploma_thesis}
 \end{document}
