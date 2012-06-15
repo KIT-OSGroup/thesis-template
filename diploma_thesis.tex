@@ -32,7 +32,7 @@
    pdfkeywords={Operating Systems, Microkernels, Energy Management, Component-Based Systems}
 ]{hyperref}
 
-\bibliographystyle{plain}
+\bibliographystyle{styles/plain}
 
 %\raggedbottom
 \newcommand{\todo}[1]{{\texttt{[#1]}}}
@@ -55,6 +55,9 @@
 \chapter{Acknowledgments}
 
 \mainmatter
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Contents}
 \tableofcontents 
 
 \chapter{Introduction}
@@ -78,6 +81,7 @@
 
 \backmatter    
 %\chapter{Bibliography}
+\phantomsection
 \addcontentsline{toc}{chapter}{Bibliography}
 \bibliography{diploma_thesis}
 \end{document}
