@@ -1,0 +1,72 @@
+% Copyright 2007 by Till Tantau
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+
+\ProvidesPackage{beamerbaseoverride}
+
+\mode<presentation>
+
+\def\sectionentry#1#2#3#4#5{% section number, section title, page
+  \ifnum#5=\c@part%
+  \box\beamer@sectionbox%
+  \ifx\beamer@notfirstsectionentry\@undefined%
+    \let\beamer@notfirstsectionentry=\@empty%
+    \hskip1.875ex plus 1fill%
+  \else%
+    {\usebeamertemplate{section leaders in head/foot}%
+    \hskip1.875ex plus 1fill}%
+  \fi%
+  \beamer@xpos=0\relax%
+  \beamer@ypos=1\relax%
+  \setbox\beamer@sectionbox=
+  \hbox{\def\insertsectionhead{#2}%
+    \def\insertsectionheadnumber{#1}%
+    \def\insertpartheadnumber{#5}%
+    {%
+      \usebeamerfont{section in head/foot}\usebeamercolor[fg]{section in head/foot}%
+      \ifnum\c@section=#1%
+        \hyperlink{Navigation#3}{{\usebeamertemplate{section in head/foot}}}%
+      \else%
+        \hyperlink{Navigation#3}{{\usebeamertemplate{section in head/foot shaded}}}%
+      \fi}%
+  }%
+  \ht\beamer@sectionbox=1.875ex%
+  \dp\beamer@sectionbox=0.75ex%
+  \fi\ignorespaces}
+
+\def\insertsubsectionnavigationhorizontal#1#2#3{%
+  \hbox to #1{{%
+    \usebeamerfont{subsection in head/foot}\usebeamercolor[fg]{subsection in head/foot}%
+    \beamer@currentsubsection=0%
+    \def\sectionentry##1##2##3##4##5{}%
+    \def\slideentry##1##2##3##4##5##6{\ifnum##6=\c@part\ifnum##1=\c@section%
+      \ifnum##2>\beamer@currentsubsection%
+      \beamer@currentsubsection=##2%
+      \box\beamer@sectionbox%
+      \ifx\beamer@notfirstsectionentry\@undefined%
+	\let\beamer@notfirstsectionentry=\@empty%
+	\hskip1.875ex plus 1fill%
+      \else%
+	{\usebeamertemplate{subsection leaders in head/foot}%
+	\hskip1.875ex plus 1fill}%
+      \fi%
+      \setbox\beamer@sectionbox=
+      \hbox{\def\insertsubsectionhead{##5}%
+         \def\insertsectionheadnumber{##1}%
+         \def\insertsubsectionheadnumber{##2}%
+         \def\insertpartheadnumber{##6}%
+         \ifnum\c@subsection=##2%
+        \beamer@link(##4){{\usebeamertemplate{subsection in head/foot}}}\else%
+        \beamer@link(##4){{\usebeamertemplate{subsection in head/foot shaded}}}\fi}%
+      \ht\beamer@sectionbox=1.875ex%
+      \dp\beamer@sectionbox=0.75ex%
+      \fi\fi\fi\ignorespaces}%
+    #2\hskip.3cm\setbox\beamer@sectionbox=\hbox{}%
+    \hskip-1.875ex plus-1fill\dohead%
+    \box\beamer@sectionbox\hfil\hskip.3cm%
+    #3}}}

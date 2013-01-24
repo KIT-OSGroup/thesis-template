@@ -1,0 +1,11 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{imageseries}
+          [2007/07/04 v0.1 input a series of images in beamer]
+
+\newcounter{imageseries@imagepage}
+\DeclareRobustCommand{\imageseries}[2]{\mode<trans| handout>{\pgfimage[#1,page=0]{#2}}%
+\mode<beamer>{\only<1>{\setcounter{imageseries@imagepage}{1}}\pgfimage[#1,page=\arabic{imageseries@imagepage}]{#2}\stepcounter{imageseries@imagepage}}}
+
+% XXX DeclareRobustCommand?
+
+\endinput

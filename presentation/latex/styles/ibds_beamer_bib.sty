@@ -1,0 +1,53 @@
+\ProvidesPackage{ibds_beamer_bib}
+	[2008/12/04 compact hyperlinks in beamer bibliography]
+
+\RequirePackage{hyperref}
+
+\def\ibb@doi@symbol{c}
+\def\ibb@url@symbol{u}
+
+\def\ibbdoisymbol#1{\gdef\ibb@doi@symbol{#1}}
+\def\ibburlsymbol#1{\gdef\ibb@url@symbol{#1}}
+\def\ibblinks{\ibb@item@init\ibb@link}
+
+\mode<beamer| trans>
+\let\ibb@orig@biblabel=\@biblabel
+\def\@biblabel#1{\edef\ibb@test{\ibb@doi\ibb@url}%
+  \ifx\ibb@test\@empty%
+    \ibb@orig@biblabel{#1}%
+  \else%
+    \ibb@link@box\ibb@orig@biblabel{#1}%
+  \fi%
+}
+
+\mode
+<all>
+
+\def\doi2url#1{{http://dx.doi.org/#1}}
+
+\def\ibb@link@box{\vbox to 0pt{%
+  \vskip\baselineskip%
+  \vbox to 0pt{%
+    \vss%
+    \hbox to 0pt{\ibb@fmt@link@line\hss}%
+  }%
+  \vss%
+}}
+\def\ibb@fmt@link@line{\ibb@doi@fmt\ibb@url@fmt}
+\def\ibb@doi@fmt{\ifx\ibb@doi\@empty\else%
+  \href{\doi2url\ibb@doi}\ibb@doi@symbol\hskip.3em%
+\fi}
+\def\ibb@url@fmt{\ifx\ibb@url\@empty\else%
+  \href\ibb@url\ibb@url@symbol%
+\fi}
+
+\def\ibb@item@init{\def\ibb@doi{}\def\ibb@url{}}
+\def\ibb@link{\@ifnextchar d\ibb@doi@link\ibb@ha@link}
+\def\ibb@ha@link{\@ifnextchar u\ibb@url@link\ibb@hb@link}
+\def\ibb@hb@link{\@ifnextchar\relax\relax\ibb@link@err}
+\def\ibb@link@err#1{\error{unknown link type \string{#1}}}
+
+\def\ibb@doi@link d#1	{\def\ibb@doi{#1}\ibb@link}
+\def\ibb@url@link u#1{\def\ibb@url{#1}\ibb@link}
+
+\ibb@item@init

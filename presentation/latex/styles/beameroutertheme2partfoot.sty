@@ -1,0 +1,18 @@
+\ProvidesPackageRCS $Id: beameroutertheme2partfoot.sty,v 1.14 2008/02/26 10:17:59 kellner Exp $
+
+\RequirePackage{beamerslidenumbering}
+
+\setbeamercolor{author in head/foot}{parent=section in head/foot}
+\setbeamercolor{title in head/foot}{parent=subsection in head/foot}
+
+\setbeamertemplate{footline}
+{%
+\leavevmode%
+\hbox{\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm]{author in head/foot}%
+\lower.7ex\hbox{\pgfuseimage{logo}}\hfill\usebeamerfont{author in head/foot}\insertshortauthor
+\end{beamercolorbox}%
+\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+\usebeamerfont{title in head/foot}\insertshorttitle\hfill\insertslidenumber/\insertlastslidenumber
+\end{beamercolorbox}}%
+\vskip0pt%
+}

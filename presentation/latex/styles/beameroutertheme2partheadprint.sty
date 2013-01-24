@@ -1,0 +1,15 @@
+\ProvidesPackageRCS $Id: beameroutertheme2partheadprint.sty,v 1.2 2008/01/08 14:44:22 kellner Exp $
+
+\setbeamercolor{section in head/foot}{parent=palette quaternary}
+\setbeamercolor{subsection in head/foot}{parent=palette quaternary}
+
+\defbeamertemplate*{headline}{short theme}
+{%
+  \leavevmode%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{section in head/foot}%
+    \insertsection%
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,rightskip=.3cm]{subsection in head/foot}%
+    \hfill\insertsubsection%
+  \end{beamercolorbox}%
+}

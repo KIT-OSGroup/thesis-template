@@ -1,0 +1,95 @@
+\ProvidesPackageRCS $Id: beamerslidenumbering.sty,v 1.2 2008/02/26 10:17:40 kellner Exp $
+
+\def\bsn@arabictmpl{\csname @arabic\endcsname\c@page}
+\def\bsn@alphatmpl{\csname @alph\endcsname\c@page}
+
+\def\bsn@arabicnumber{%
+    \let\thepage=\bsn@arabictmpl%
+    \expandafter\c@page\expandafter=\insertframenumber%
+    \relax%
+}
+
+\def\bsn@alphanumber{%
+    \toks@\expandafter{\bsn@alphatmpl}%
+    \edef\thepage{\insertframenumber\the\toks@}%
+    \advance\c@page by-\beamer@startpageofframe%
+    \advance\c@page by 1%
+    \relax%
+}
+
+\def\bsn@prepenvlogical{%
+  \ifx\beamer@startpageofframe\beamer@endpageofframe%
+    \bsn@arabicnumber%
+  \else%
+    \ifbeamer@autobreak%
+      \bsn@arabicnumber%
+    \else%
+      \bsn@alphanumber%
+    \fi%
+  \fi%
+}
+
+\def\bsn@prepenvjumps{%
+  \ifnum\the\c@page<\beamer@endpageofframe%
+    \ifbeamer@autobreak%
+      \bsn@arabicnumber%
+    \else%
+      \bsn@alphanumber%
+    \fi%
+  \else%
+    \bsn@arabicnumber%
+  \fi%
+}
+
+\let\bsn@prepenvpage=\@empty
+
+\ifx\HyPL@EveryPage\@empty\else
+  \let\bsn@HyPL@EveryPage=\HyPL@EveryPage
+  \def\HyPL@EveryPage{%
+    \begingroup%
+      \bsn@prepareenv%
+      \bsn@HyPL@EveryPage%
+    \endgroup%
+  }
+\fi
+
+\def\insertslidenumber{%
+  \begingroup%
+    \bsn@prepareenv%
+    \thepage%
+  \endgroup%
+}
+
+\let\bsn@orig@appendixpages=\beamer@appendixpages
+\def\beamer@appendixpages#1{%
+  {%
+    \count@=#1%
+    \advance\count@ by-1%
+    \xdef\bsn@lastcontentframenumber{\@arabic\count@}%
+  }%
+  \bsn@orig@appendixpages{#1}%
+}
+
+\def\inserttalkendframenumber{%
+  \ifx\beamer@startpageofappendix\@empty%
+    \inserttotalframenumber%
+  \else%
+    \ifnum\c@page<\beamer@startpageofappendix\relax%
+      \bsn@lastcontentframenumber%
+    \else%
+      \inserttotalframenumber%
+    \fi%
+  \fi%
+  \relax%
+}
+
+\def\bsn@lastnumberlogical{\inserttalkendframenumber}
+\def\bsn@lastnumberjumps{\inserttalkendframenumber}
+\def\bsn@lastnumberpage{\insertdocumentendpage}
+
+\outer\def\slidenumberingstyle#1{
+  \expandafter\let\expandafter\bsn@prepareenv\csname bsn@prepenv#1\endcsname
+  \expandafter\let\expandafter\insertlastslidenumber\csname bsn@lastnumber#1\endcsname
+}
+
+\slidenumberingstyle{page}

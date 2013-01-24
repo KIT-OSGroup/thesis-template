@@ -1,0 +1,28 @@
+\ProvidesPackageRCS $Id: beamerthemeXshort.sty,v 1.2 2008/01/08 14:44:22 kellner Exp $
+
+\mode<presentation>
+
+% from the Warsaw theme
+\useinnertheme[shadow=true]{rounded}
+
+% redirect the shadow theme to include our modified split theme instead
+% of the original
+\let\temp@useoutertheme=\useoutertheme
+\def\useoutertheme#1{%
+  \def\temp@stra{#1}%
+  \def\temp@strb{split}%
+  \ifx\temp@stra\temp@strb%
+    \temp@useoutertheme{2partfoot}%
+    \temp@useoutertheme{1parthead}%
+  \fi%
+}
+\temp@useoutertheme{shadow}
+\let\useoutertheme=\temp@useoutertheme
+
+\usecolortheme{orchid}
+\usecolortheme{whale}
+
+\setbeamerfont{block title}{size={}}
+
+\mode
+<all>

@@ -1,0 +1,101 @@
+
+\mode<beamer| trans>{
+\usetheme{kit}
+\pgfdeclareimage[height=1.5ex]{logo}{kit_inv_small}
+}\mode<handout>{
+\def\titleimage#1{}
+\def\titlelogo#1{}
+\pgfdeclareimage[height=1.5ex]{logo}{kit_small}
+\useinnertheme{circles}
+\usecolortheme{rose}
+\useoutertheme{2partfoot}
+\useoutertheme{2partheadprint}
+
+\setbeamercolor{bibliography item}{use=normal text,fg=normal text.fg}
+\setbeamercolor{bibliography entry author}{use=normal text,fg=normal text.fg}
+\setbeamercolor{bibliography entry title}{use=normal text,fg=normal text.fg}
+\setbeamercolor{bibliography entry location}{use=normal text,fg=normal text.fg}
+\setbeamercolor{bibliography entry note}{use=normal text,fg=normal text.fg}
+
+\usepackage{pgfpages}
+
+\pgfpagesdeclarelayout{comments on 2}
+{%
+}
+{
+  \pgfpagesphysicalpageoptions
+  {%
+    logical pages=4,%
+    last logical shipout=2,%
+    physical height=\pgfpageoptionheight,%
+    physical width=\pgfpageoptionwidth%
+  }
+  \pgfpageslogicalpageoptions{1}
+  {%
+    resized width=.5\pgfphysicalwidth,%
+    resized height=.5\pgfphysicalheight,%
+    border shrink=\pgfpageoptionborder,%
+    border code=\pgfusepath{stroke},%
+    center=\pgfpoint{.25\pgfphysicalwidth}{.75\pgfphysicalheight}%
+  }%
+  \pgfpageslogicalpageoptions{2}
+  {%
+    resized width=.5\pgfphysicalwidth,%
+    resized height=.5\pgfphysicalheight,%
+    border shrink=\pgfpageoptionborder,%
+    border code=\pgfusepath{stroke},%
+    center=\pgfpoint{.25\pgfphysicalwidth}{.25\pgfphysicalheight}%
+  }%
+  \pgfpageslogicalpageoptions{3}
+  {%
+    resized width=.5\pgfphysicalwidth,%
+    resized height=.5\pgfphysicalheight,%
+    border shrink=\pgfpageoptionborder,%
+    center=\pgfpoint{.75\pgfphysicalwidth}{.75\pgfphysicalheight},%
+    copy from=3,%
+  }%
+  \pgfpageslogicalpageoptions{4}
+  {%
+    resized width=.5\pgfphysicalwidth,%
+    resized height=.5\pgfphysicalheight,%
+    border shrink=\pgfpageoptionborder,%
+    center=\pgfpoint{.75\pgfphysicalwidth}{.25\pgfphysicalheight},%
+    copy from=4,%
+  }%
+}
+\pgfpagesuselayout{comments on 2}[a4paper,landscape,border shrink=5mm]
+\AtBeginDocument{%
+\pgfpagesshipoutlogicalpage{3}\vbox{\color{black}\vskip-1in\vskip\baselineskip%
+  \makeatletter%
+  \dimen@=1.5\baselineskip%
+  \loop%
+    \advance\dimen@ by 1.5\baselineskip%
+  \ifdim\dimen@<\paperheight%
+    \vskip.5\baselineskip%
+    \vbox to 0pt{%
+      \hskip-1in\hbox to \paperwidth{\hrulefill}%
+      \vss%
+    }%
+  \repeat%
+  \makeatother%
+}%
+\pgfpagesshipoutlogicalpage{4}\vbox{\color{black}\vskip-1in\vskip\baselineskip%
+  \makeatletter%
+  \dimen@=1.5\baselineskip%
+  \loop%
+    \advance\dimen@ by 1.5\baselineskip%
+  \ifdim\dimen@<\paperheight%
+    \vskip.5\baselineskip%
+    \vbox to 0pt{%
+      \hskip-1in\hbox to \paperwidth{\hrulefill}%
+      \vss%
+    }%
+  \repeat%
+  \makeatother%
+}%
+}
+%\pgfpageslogicalpageoptions{3}{border code=\pgfusepath{stroke}}
+%\pgfpageslogicalpageoptions{4}{border code=\pgfusepath{stroke}}
+}
+
+\RequirePackage{bibunits}

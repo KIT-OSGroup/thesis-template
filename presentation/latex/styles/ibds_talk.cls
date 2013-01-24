@@ -1,0 +1,10 @@
+\ProvidesClass{ibds_talk}
+\def\thepage{}
+\LoadClassWithOptions{beamer}
+\RequirePackage{beamerbaseoverride}
+\usetheme{ibds_talk}
+\RequirePackage[ngerman]{babel}
+\RequirePackage{ibds_beamer_bib}
+\RequirePackage{pifont}
+\ibbdoisymbol{\ding{108}}
+\ibburlsymbol{\ding{117}}
