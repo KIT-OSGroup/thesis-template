@@ -26,7 +26,8 @@
 \newcommand{\secondaryreviewer}[1]{\def\ktc@sec@reviewer{#1}}
 
 \def\ktc@advisor{No advisor???}
-\newcommand{\advisor}[1]{\def\ktc@advisor{#1}}
+\def\ktc@sec@advisor{}
+\newcommand{\advisor}[2]{\def\ktc@advisor{#1}\def\ktc@sec@advisor{#2}}
 
 \def\ktc@workbegin{42.\ Oktober 1582}
 \newcommand{\thesisbegindate}[1]{\def\ktc@workbegin{#1}}
@@ -67,11 +68,12 @@ Q}\fi\fi%
 \vskip\baselineskip
 \centerline{\ktc@authorfont\@author}
 \vskip\baselineskip
-\centerline{an der Fakult{\"a}t f{\"u}r Chemie und Biowissenschaften}
+\centerline{an der Fakult{\"a}t f{\"u}r Informatik}
 \vfill
 \hbox to \hsize{\hbox to .5\hsize{\hskip 40ptErstgutachter:\hss}\ktc@prim@reviewer\hfill}\vskip .5\baselineskip
-\hbox to \hsize{\hbox to .5\hsize{\hskip 40ptZweitgutachter:\hss}\ktc@sec@reviewer\hfill}\vskip .5\baselineskip
+\ifx\ktc@thesistype\ktc@type@sa\else\hbox to \hsize{\hbox to .5\hsize{\hskip 40ptZweitgutachter:\hss}\ktc@sec@reviewer\hfill}\vskip .5\baselineskip\fi
 \hbox to \hsize{\hbox to .5\hsize{\hskip 40ptBetreuender Mitarbeiter:\hss}\ktc@advisor\hfill}\vskip .5\baselineskip
+\hbox to \hsize{\hbox to .5\hsize{\hskip 40pt~\hss}\ktc@sec@advisor\hfill}\vskip .5\baselineskip
 \vfill
 \centerline{Bearbeitungszeit: \ktc@workbegin\ -- \ktc@workend}
 }
