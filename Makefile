@@ -89,13 +89,12 @@ help:
 clean = $(target) $(optional)
 
 ##############################################################################
-hg_state = $(wildcard ../.hg/00changelog.i ../.hg/00changelog.d)
 
-hg.tex: Makefile $(hg_state)
-	@changeset=`hg id | cut -f 1 -d ' '` && echo '\renewcommand{\Revision}' "{$${changeset}}" > $@
-	-@tipdate=`hg tip | grep "date:" | cut -c 14-44` && echo '\renewcommand{\RevisionDate}' "{$${tipdate}}" >> $@
+git.tex: Makefile
+	@changeset=`git rev-parse HEAD` && echo '\\renewcommand{\Revision}' "{$${changeset}}" > $@
+	-@tipdate=`git log -1 --format="%cd"` && echo '\\renewcommand{\RevisionDate}' "{$${tipdate}}" >> $@
 
-rev.tex: hg.tex
+rev.tex: git.tex
 	mv $< $@
 
 
