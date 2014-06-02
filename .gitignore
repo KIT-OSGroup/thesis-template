@@ -1,0 +1,14 @@
+/*.aux
+/*.bbl
+/*.blg
+/*.log
+/*.out
+/*.pdf
+/*.toc
+/*.rip
+rev.tex
+timezone.tex
+rev.tex.aux
+_region_.tex
+auto/
+*~
