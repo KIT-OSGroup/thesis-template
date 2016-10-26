@@ -9,7 +9,7 @@ paper_size ?= a4
 #paper_size ?= letter
 pdf_quality ?= printer
 
-TEXINPUTS := .:$(PWD)/styles/:
+export TEXINPUTS := .:$(PWD)/styles/:
 
 all: pdf
 
