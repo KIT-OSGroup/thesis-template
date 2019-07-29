@@ -2,7 +2,7 @@
 \RequirePackage[T1]{fontenc}
 \renewcommand*{\sfdefault}{phv}
 
-\def\ktc@kitdesc{KIT -- Die Forschungsuniversit{\"a}t in der Helmholtz-Gemeinschaft}
+\def\ktc@kitdesc{\iflanguage{ngerman}{KIT -- Die Forschungsuniversit{\"a}t in der Helmholtz-Gemeinschaft}{KIT -- The Research University in the Helmholtz Association}}
 \def\ktc@coverfont{\fontsize{14}{14}\selectfont}
 \def\ktc@titlefont{\fontsize{28}{28}\selectfont}
 \def\ktc@authorfont{\fontsize{22}{22}\selectfont}
@@ -11,11 +11,11 @@
 
 \def\ktc@thesistype{%
   \@latex@warning{No thesis type given! Use \protect\thesistype before %
-    \protect\maketitle.}Geschreibsel}
+    \protect\maketitle.}\iflanguage{ngerman}{Geschreibsel}{Scribblings}}
 \def\ktc@type@sa{Studienarbeit}
 \def\ktc@type@da{Diplomarbeit}
-\def\ktc@type@ba{Bachelorarbeit}
-\def\ktc@type@ma{Masterarbeit}
+\def\ktc@type@ba{\iflanguage{ngerman}{Bachelorarbeit}{Bachelor's Thesis}}
+\def\ktc@type@ma{\iflanguage{ngerman}{Masterarbeit}{Master's Thesis}}
 \newcommand{\thesistype}[1]{\expandafter\ifx\csname ktc@type@#1\endcsname\relax%
 \else\expandafter\let\expandafter\ktc@thesistype\csname ktc@type@#1\endcsname\fi}
 
@@ -43,7 +43,7 @@
 \vsize=24.7cm % 29 cm - \voffset - 3cm%
 \ifx\pdfoutput\undefined\def\pdfrefximage##1{use pdf\LaTeX!}%
 \else\ifnum\pdfoutput=0\def\pdfrefximage##1{use pdf\LaTeX!}%
-\else\pdfximage width 4.05cm {fig/kit_logo_de_1c.pdf}\fi\fi%
+\else\iflanguage{ngerman}{\pdfximage width 4.05cm {fig/kit_logo_de_1c.pdf}}{\pdfximage width 4.05cm {fig/kit_logo_en_1c.pdf}}\fi\fi%
 \shipout\vbox{%
 \ifx\pdfoutput\undefined\else%
 \ifnum\pdfoutput=0\else%
@@ -64,18 +64,18 @@ Q}\fi\fi%
 {\noindent\centering\ktc@titlefont\@title\par}
 \vfill
 \centerline{\ktc@thesistype}
-\centerline{von}
+\centerline{\iflanguage{ngerman}{von}{submitted by}}
 \vskip\baselineskip
 \centerline{\ktc@authorfont\@author}
 \vskip\baselineskip
-\centerline{an der Fakult{\"a}t f{\"u}r Informatik}
+\centerline{\iflanguage{ngerman}{an der Fakult{\"a}t f{\"u}r Informatik}{to the KIT Department of Informatics}}
 \vfill
-\hbox to \hsize{\hbox to .5\hsize{\hskip 40ptErstgutachter:\hss}\ktc@prim@reviewer\hfill}\vskip .5\baselineskip
-\ifx\ktc@thesistype\ktc@type@sa\else\hbox to \hsize{\hbox to .5\hsize{\hskip 40ptZweitgutachter:\hss}\ktc@sec@reviewer\hfill}\vskip .5\baselineskip\fi
-\hbox to \hsize{\hbox to .5\hsize{\hskip 40ptBetreuender Mitarbeiter:\hss}\ktc@advisor\hfill}\vskip .5\baselineskip
+\hbox to \hsize{\hbox to .5\hsize{\hskip 40pt\iflanguage{ngerman}{Erstgutachter}{Reviewer}:\hss}\ktc@prim@reviewer\hfill}\vskip .5\baselineskip
+\ifx\ktc@thesistype\ktc@type@sa\else\hbox to \hsize{\hbox to .5\hsize{\hskip 40pt\iflanguage{ngerman}{Zweitgutachter}{Second Reviewer}:\hss}\ktc@sec@reviewer\hfill}\vskip .5\baselineskip\fi
+\hbox to \hsize{\hbox to .5\hsize{\hskip 40pt\iflanguage{ngerman}{Betreuender Mitarbeiter}{Advisor}:\hss}\ktc@advisor\hfill}\vskip .5\baselineskip
 \hbox to \hsize{\hbox to .5\hsize{\hskip 40pt~\hss}\ktc@sec@advisor\hfill}\vskip .5\baselineskip
 \vfill
-\centerline{Bearbeitungszeit: \ktc@workbegin\ -- \ktc@workend}
+\centerline{\iflanguage{ngerman}{Bearbeitungszeit: }\ktc@workbegin\ -- \ktc@workend}
 }
 \vskip-\baselineskip\ktc@urlfont\vskip\baselineskip% correct baselineskip
 \vskip 1cm\hbox to \hsize{\ktc@descfont\ktc@kitdesc%
