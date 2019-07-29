@@ -4,7 +4,7 @@
 #  Execute 'make help' for a list of build targets.
 #
 
-target = diploma_thesis
+target = thesis
 paper_size ?= a4
 #paper_size ?= letter
 pdf_quality ?= printer
